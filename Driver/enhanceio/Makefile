@@ -8,7 +8,7 @@ KERNEL_TREE ?= /lib/modules/$(KERNEL_SOURCE_VERSION)/build
 EXTRA_CFLAGS += -I$(KERNEL_TREE)/drivers/md -I./ -DCOMMIT_REV="\"$(COMMIT_REV)\""
 EXTRA_CFLAGS += -I$(KERNEL_TREE)/include/ -I$(KERNEL_TREE)/include/linux 
 # Check for RHEL/CentOS
-RHEL5_VER ?= $(shell  if [ -e /etc/redhat-release ]; then grep 5.[0-9] /etc/redhat-release; else false; fi)
+RHEL5_VER ?= $(shell  if [ -e /etc/redhat-release ]; then grep 5[.][0-9] /etc/redhat-release; else false; fi)
 RHEL5_SETUP :=
 ifneq "$(RHEL5_VER)" ""
 	RHEL5_SETUP := rhel5-setup
@@ -56,7 +56,7 @@ install: modules_install
 .PHONY: clean
 clean:
 	make -C $(KERNEL_TREE) M=$(PWD) clean
-.PHONY: rhel5-setup
+#.PHONY: rhel5-setup
 rhel5-setup: $(RHEL5_TREE)
 	make -C $(RHEL5_TREE) oldconfig ; \
 	make -C $(RHEL5_TREE) prepare modules_prepare
