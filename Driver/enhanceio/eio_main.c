@@ -2546,6 +2546,8 @@ int eio_map(struct cache_c *dmc, struct request_queue *rq, struct bio *bio)
 
 	pr_debug("this needs to be removed immediately\n");
 
+	pr_info("eio_map function call by PID:%d", current->pid);
+
 	if (bio_rw_flagged(bio, REQ_DISCARD)) {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0))
 		pr_debug
