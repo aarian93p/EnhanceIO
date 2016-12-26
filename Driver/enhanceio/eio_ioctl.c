@@ -51,6 +51,9 @@ long eio_ioctl(struct file *filp, unsigned cmd, unsigned long arg)
 			vfree(cache);
 			return -EFAULT;
 		}
+
+		cache->cr_mode = CACHE_MODE_WB;
+
 		error = eio_cache_create(cache);
 		vfree(cache);
 		break;
