@@ -852,6 +852,8 @@ struct eio_bio {
 	index_t eb_index;               /*for read bios*/
 	atomic_t eb_holdcount;          /* ebio hold count, currently used only for dirty block I/O */
 	struct bio_vec eb_rbv[0];
+
+	u_int32_t eb_mode;                 /* CACHE_MODE_{WB, RO, WT} */
 };
 
 enum eio_io_dir {
